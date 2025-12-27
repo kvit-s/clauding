@@ -7,7 +7,7 @@ export class IntegrationTestHelpers {
   static createRealGitRepo(): { path: string; cleanup: () => void } {
     const testRepo = fs.mkdtempSync(path.join(os.tmpdir(), 'clauding-integration-'));
 
-    execSync('git init', { cwd: testRepo });
+    execSync('git init -b main', { cwd: testRepo });
     execSync('git config user.email "test@example.com"', { cwd: testRepo });
     execSync('git config user.name "Test User"', { cwd: testRepo });
     fs.writeFileSync(path.join(testRepo, 'README.md'), '# Test');
