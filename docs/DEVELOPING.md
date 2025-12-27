@@ -19,6 +19,64 @@ npm run build
 3. Changes to TypeScript require recompilation (`npm run compile`)
 4. Changes to webview require rebuild (`cd webview && npm run build`)
 
+## Dogfooding Workflow
+
+Use a production version of Clauding to develop Clauding itself.
+
+### Setup
+
+```bash
+# Build and install production version
+npm run release
+```
+
+Restart VS Code. The production version is now active in your main VS Code instance.
+
+### Daily Development
+
+1. Open the clauding source directory in VS Code (production version is active)
+2. Edit source files
+3. Press `F5` to launch Extension Development Host
+
+**What happens:**
+- A new VS Code window opens with your development version
+- Production version is automatically disabled in this debug window
+- Your main VS Code still runs production
+
+### Debug Configuration
+
+Your `.vscode/launch.json` should contain:
+
+```json
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Run Extension",
+      "type": "extensionHost",
+      "request": "launch",
+      "runtimeExecutable": "${execPath}",
+      "args": [
+        "--extensionDevelopmentPath=${workspaceFolder}",
+        "~/clauding-test"
+      ]
+    }
+  ]
+}
+```
+
+The `--extensionDevelopmentPath` tells the debug instance to load from source instead of the installed version.
+
+### Updating Production
+
+After finishing a feature:
+
+```bash
+# Update version in package.json, then:
+npm run release
+# Restart VS Code
+```
+
 ## Running Tests
 
 ```bash
@@ -145,13 +203,20 @@ code --install-extension clauding-x.x.x.vsix
 
 1. Update version in `package.json`
 2. Update `CHANGELOG.md`
-3. Build the package:
+3. Test locally:
    ```bash
-   npm run build
-   npm run package
+   npm run release  # Builds, packages, and installs locally
    ```
-4. Test the `.vsix` locally
-5. Create a GitHub release and attach the `.vsix` file
+4. Commit and push changes
+5. Create a GitHub release:
+   ```bash
+   gh release create v0.1.0 --title "v0.1.0" --notes "Release notes here"
+   ```
+
+The `.github/workflows/release.yml` workflow will automatically:
+- Build the extension
+- Package the VSIX
+- Attach it to the release as a downloadable asset
 
 ## Code Style
 
