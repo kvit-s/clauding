@@ -223,8 +223,8 @@ export async function captureTerminalBuffer(
 	}
 
 	// Check if terminal has getBuffer method (duck typing)
-	if ('getBuffer' in terminal && typeof (terminal as any).getBuffer === 'function') {
-		const content = await (terminal as any).getBuffer();
+	if (terminal.getBuffer) {
+		const content = await terminal.getBuffer();
 		const lineCount = content.split('\n').length;
 		const sizeBytes = Buffer.byteLength(content, 'utf8');
 

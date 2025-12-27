@@ -6,7 +6,7 @@ import { FeatureService } from '../../../services/FeatureService';
 import { WorktreeService } from '../../../services/WorktreeService';
 import { GitService } from '../../../services/GitService';
 import { MessageService } from '../../../services/MessageService';
-import { ITerminalProvider, TerminalType } from '../../../terminals/ITerminalProvider';
+import { ITerminalProvider } from '../../../terminals/ITerminalProvider';
 import { getAbsoluteMetaPath, getAbsoluteWorktreeMetaPath, getProjectRoot, getFeatureFolder, META_FILES } from '../../../utils/featureMetaPaths';
 
 interface ReactivateFeatureMessage {
@@ -75,7 +75,7 @@ export class ReactivateFeatureHandler extends MessageHandler<ReactivateFeatureMe
           // Files to copy from the archived feature's features folder to new worktree's .clauding folder
           const filesToCopy = [META_FILES.PROMPT, META_FILES.PLAN, META_FILES.MODIFY_PROMPT];
 
-          let copiedFiles: string[] = [];
+          const copiedFiles: string[] = [];
 
           for (const fileName of filesToCopy) {
             const sourcePath = path.join(archivedFeatureFolder, fileName);

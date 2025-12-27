@@ -1,5 +1,4 @@
 import * as vscode from 'vscode';
-import * as path from 'path';
 import { ensureClaudingDirectories } from './utils/directorySetup';
 import { ConfigService } from './services/ConfigService';
 import { FeatureService } from './services/FeatureService';
@@ -19,7 +18,7 @@ import { configureAgentHooksCommand } from './commands/configureAgentHooksComman
 import { cleanupBranchesCommand } from './commands/cleanupBranchesCommand';
 import * as featureMetaPaths from './utils/featureMetaPaths';
 import { updateAllWorktreeClaudeignores } from './utils/worktreeSetup';
-import { ITerminalProvider, TerminalType } from './terminals/ITerminalProvider';
+import { ITerminalProvider } from './terminals/ITerminalProvider';
 import { FeatureSearchService } from './services/FeatureSearchService';
 // New architecture components
 import { FeatureStateManager } from './state/FeatureStateManager';

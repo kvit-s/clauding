@@ -87,7 +87,7 @@ export class FileCheckService {
   private async checkPatternFile(
     file: RequiredFile,
     worktreePath: string,
-    featureName: string
+    _featureName: string
   ): Promise<{ found: boolean; error?: string }> {
     try {
       // Build the pattern path

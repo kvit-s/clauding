@@ -118,9 +118,10 @@ export class TmuxSessionManager {
 				// Session exists, kill it
 				TmuxUtils.execSync(`kill-session -t "${this.sessionName}"`);
 				console.log(`Killed tmux session (sync): ${this.sessionName}`);
-			} catch (error: any) {
+			} catch (error) {
 				// Session doesn't exist or has-session failed
-				if (error.message.includes('no server running') || error.message.includes("can't find session")) {
+				const message = error instanceof Error ? error.message : String(error);
+				if (message.includes('no server running') || message.includes("can't find session")) {
 					// Session doesn't exist, nothing to do
 					return;
 				}

@@ -6,6 +6,7 @@ import { MessageService } from './MessageService';
 import { AgentStatusTracker } from './AgentStatusTracker';
 import { FeatureStateManager } from '../state/FeatureStateManager';
 import { ITerminalProvider } from '../terminals/ITerminalProvider';
+import { TmuxTerminal } from '../terminals/tmux/TmuxTerminal';
 
 /**
  * Metadata for archived features
@@ -81,7 +82,7 @@ export class FeatureQueryService {
    * Called by FeatureMergeCoordinator after successful merge
    */
   public async addToArchivedCache(
-    featureName: string,
+    _featureName: string,
     _mergeCommitHash: string
   ): Promise<void> {
     // Refresh archived features from filesystem
@@ -354,7 +355,7 @@ export class FeatureQueryService {
       type: terminal.terminalType as 'agent' | 'console' | 'test' | 'prerun' | 'main',
       // Get activity state if available (tmux provider only)
       activityState: terminal.getActivityState ? terminal.getActivityState() : undefined,
-      windowIndex: (terminal as any).windowIndex
+      windowIndex: terminal instanceof TmuxTerminal ? terminal.getWindowIndex() : undefined
     }));
   }
 

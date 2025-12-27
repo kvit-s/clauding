@@ -3,8 +3,7 @@ import {
 	ITerminalProvider,
 	ITerminal,
 	TerminalOptions,
-	TerminalType,
-	ActivityState
+	TerminalType
 } from './ITerminalProvider';
 
 /**

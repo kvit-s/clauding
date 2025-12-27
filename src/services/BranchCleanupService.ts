@@ -98,7 +98,7 @@ export class BranchCleanupService {
       // Parse worktree list to find branches
       const worktrees = result.stdout;
       return worktrees.includes(`branch refs/heads/${branchName}`);
-    } catch (error) {
+    } catch {
       // If command fails, assume no worktree
       return false;
     }

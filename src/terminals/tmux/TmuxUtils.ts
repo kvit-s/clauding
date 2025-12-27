@@ -42,9 +42,10 @@ export class TmuxUtils {
 				console.warn(`tmux stderr: ${stderr}`);
 			}
 			return stdout.trim();
-		} catch (error: any) {
+		} catch (error) {
 			// Enhance error message
-			throw new Error(`tmux command failed: ${command}\n${error.message}`);
+			const message = error instanceof Error ? error.message : String(error);
+			throw new Error(`tmux command failed: ${command}\n${message}`);
 		}
 	}
 
@@ -58,9 +59,10 @@ export class TmuxUtils {
 		try {
 			const stdout = execSync(`tmux ${command}`, { encoding: 'utf-8' });
 			return stdout.trim();
-		} catch (error: any) {
+		} catch (error) {
 			// Enhance error message
-			throw new Error(`tmux command failed: ${command}\n${error.message}`);
+			const message = error instanceof Error ? error.message : String(error);
+			throw new Error(`tmux command failed: ${command}\n${message}`);
 		}
 	}
 
@@ -95,9 +97,10 @@ export class TmuxUtils {
 		try {
 			const output = await this.exec('list-sessions -F "#{session_name}"');
 			return output ? output.split('\n').filter(s => s.length > 0) : [];
-		} catch (error: any) {
+		} catch (error) {
 			// If no sessions exist, tmux returns an error
-			if (error.message.includes('no server running')) {
+			const message = error instanceof Error ? error.message : String(error);
+			if (message.includes('no server running')) {
 				return [];
 			}
 			throw error;
@@ -139,7 +142,7 @@ export class TmuxUtils {
 			const lines = output.split('\n');
 
 			for (const line of lines) {
-				if (!line) continue;
+				if (!line) { continue; }
 
 				const [indexStr, name, activityStr, silenceStr, activeStr, paneCountStr] = line.split('|');
 
@@ -158,9 +161,10 @@ export class TmuxUtils {
 			}
 
 			return windows;
-		} catch (error: any) {
+		} catch (error) {
 			// Session might not exist or have no windows
-			if (error.message.includes('session not found') || error.message.includes('no current client')) {
+			const message = error instanceof Error ? error.message : String(error);
+			if (message.includes('session not found') || message.includes('no current client')) {
 				return [];
 			}
 			throw error;
@@ -177,9 +181,10 @@ export class TmuxUtils {
 			const historyFlag = captureHistory ? '-S -' : '';
 			const output = await this.exec(`capture-pane -t "${target}" ${historyFlag} -p`);
 			return output;
-		} catch (error: any) {
+		} catch (error) {
 			// Pane might not exist
-			if (error.message.includes('no current client')) {
+			const message = error instanceof Error ? error.message : String(error);
+			if (message.includes('no current client')) {
 				return '';
 			}
 			throw error;
@@ -197,7 +202,7 @@ export class TmuxUtils {
 		const lines = output.split('\n');
 
 		for (const line of lines) {
-			if (!line) continue;
+			if (!line) { continue; }
 
 			const values = line.split('|');
 			const map = new Map<string, string>();

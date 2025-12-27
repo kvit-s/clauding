@@ -1,5 +1,4 @@
 import * as fs from 'fs';
-import * as path from 'path';
 import { FeatureMessage, createFeatureMessage, MessageAction } from '../models/FeatureMessage';
 import { getFeaturesMetaPath, getProjectRoot, ensureFeaturesFolderExists } from '../utils/featureMetaPaths';
 

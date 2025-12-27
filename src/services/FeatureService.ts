@@ -17,7 +17,7 @@ import { AgentStatusTracker } from './AgentStatusTracker';
 import { FeatureMetadataWatcher } from './FeatureMetadataWatcher';
 import { ConfigService } from './ConfigService';
 import { AGENT_COMMANDS } from '../models/AgentCommand';
-import { ensureFeatureMetaDirExists, getAbsoluteMetaPath, getAbsoluteWorktreeMetaPath, getProjectRoot, getFeaturesMetaPath, META_FILES } from '../utils/featureMetaPaths';
+import { ensureFeatureMetaDirExists, getAbsoluteMetaPath, getProjectRoot, getFeaturesMetaPath, META_FILES } from '../utils/featureMetaPaths';
 import { ValidationService } from '../utils/ValidationService';
 import { setupWorktreeHooks } from '../utils/hookConfiguration';
 

@@ -357,7 +357,7 @@ export class GitService {
         { cwd: worktreePath }
       );
       return result.stdout;
-    } catch (error) {
+    } catch {
       // File doesn't exist in that commit
       return null;
     }

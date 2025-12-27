@@ -1,4 +1,3 @@
-import * as vscode from 'vscode';
 import { MessageHandler } from '../MessageHandler';
 import { FeatureService } from '../../../services/FeatureService';
 import { MessageService } from '../../../services/MessageService';

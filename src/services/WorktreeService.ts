@@ -6,7 +6,6 @@ import { ensureClaudeignoreExists } from '../utils/worktreeSetup';
 import {
   ensureWorktreeMetaDirExists,
   ensureFeaturesFolderExists,
-  getProjectRoot,
   getFeaturesDir,
   getFeatureFolder
 } from '../utils/featureMetaPaths';

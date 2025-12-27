@@ -1,5 +1,4 @@
 import * as vscode from 'vscode';
-import * as path from 'path';
 import { GitService } from '../services/GitService';
 import { TimelogService } from '../services/TimelogService';
 

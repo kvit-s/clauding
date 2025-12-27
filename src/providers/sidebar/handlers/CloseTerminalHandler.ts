@@ -29,7 +29,7 @@ export class CloseTerminalHandler extends MessageHandler<CloseTerminalMessage> {
 
     if (terminal) {
       // Check if this terminal needs buffer capture before disposal
-      const outputFilePath = (terminal as any).__outputFilePath;
+      const outputFilePath = terminal.__outputFilePath;
       if (outputFilePath && terminal instanceof TmuxTerminal) {
         try {
           // Capture buffer BEFORE disposing the terminal

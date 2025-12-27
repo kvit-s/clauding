@@ -56,6 +56,12 @@ export interface ITerminal {
 	/** Whether this is a base terminal for a feature */
 	readonly isBase: boolean;
 
+	/** Output file path for buffer capture (set by AgentService) */
+	__outputFilePath?: string;
+
+	/** Feature name for buffer capture context (set by AgentService) */
+	__featureName?: string;
+
 	/**
 	 * Show the terminal in the UI
 	 * @param preserveFocus Whether to preserve focus on current editor

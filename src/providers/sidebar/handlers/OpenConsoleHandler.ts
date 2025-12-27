@@ -1,4 +1,3 @@
-import * as vscode from 'vscode';
 import { MessageHandler } from '../MessageHandler';
 import { FeatureService } from '../../../services/FeatureService';
 import { MessageService } from '../../../services/MessageService';
@@ -28,7 +27,7 @@ export class OpenConsoleHandler extends MessageHandler<OpenConsoleMessage> {
         return;
       }
 
-      const terminal = await this.terminalProvider.createTerminal({
+      await this.terminalProvider.createTerminal({
         name: `Clauding: ${featureName}`,
         type: TerminalType.Console,
         cwd: feature.worktreePath,

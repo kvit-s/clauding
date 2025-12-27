@@ -247,7 +247,7 @@ export function isWorktreeMetaFile(filename: string): boolean {
         META_FILES.PLAN,
         META_FILES.MODIFY_PROMPT
     ];
-    return worktreeFiles.includes(filename as any);
+    return (worktreeFiles as readonly string[]).includes(filename);
 }
 
 /**
@@ -264,7 +264,7 @@ export function isFeaturesMetaFile(filename: string): boolean {
         META_FILES.PENDING_COMMAND,
         META_FILES.WRAP_UP
     ];
-    return featuresFiles.includes(filename as any);
+    return (featuresFiles as readonly string[]).includes(filename);
 }
 
 /**

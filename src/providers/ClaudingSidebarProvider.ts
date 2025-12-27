@@ -188,7 +188,8 @@ export class ClaudingSidebarProvider implements vscode.WebviewViewProvider {
             fileName: 'plan.md'
           });
         }
-      } catch (error) {
+      } catch {
+        // Inner error handled silently
       }
     } catch (error) {
       // Silently ignore errors - this is a best-effort auto-open feature

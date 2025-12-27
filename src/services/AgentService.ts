@@ -9,7 +9,6 @@ import { AgentExecutionStateMachine } from './AgentExecutionStateMachine';
 import { waitForFileStability } from '../utils/fileStability';
 import { ITerminalProvider, ITerminal } from '../terminals/ITerminalProvider';
 import { TerminalType } from '../terminals/ITerminalProvider';
-import { TmuxBufferCapture, captureTerminalBuffer } from '../terminals/tmux/TmuxBufferCapture';
 import { TmuxTerminal } from '../terminals/tmux/TmuxTerminal';
 import { VariableResolver } from './VariableResolver';
 
@@ -128,7 +127,7 @@ export class AgentService {
 
     // Capture buffers BEFORE disposing terminals
     for (const terminal of terminals) {
-      const outputFilePath = (terminal as any).__outputFilePath;
+      const outputFilePath = terminal.__outputFilePath;
       if (outputFilePath && terminal instanceof TmuxTerminal) {
         try {
           const buffer = await terminal.getBuffer();
@@ -381,8 +380,8 @@ Read the plan to understand the feature context, examine the conflicted files, a
       }
 
       // Store metadata on terminal for later buffer capture during close
-      (terminal as any).__outputFilePath = outputFile;
-      (terminal as any).__featureName = featureNameFromPath;
+      (terminal as ITerminal).__outputFilePath = outputFile;
+      (terminal as ITerminal).__featureName = featureNameFromPath;
     } else {
       // Use file-based capture for VS Code terminals (fallback)
       // Create temporary script file in outputs directory

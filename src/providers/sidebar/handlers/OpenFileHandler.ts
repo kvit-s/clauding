@@ -4,7 +4,7 @@ import * as fs from 'fs';
 import { MessageHandler } from '../MessageHandler';
 import { FeatureService } from '../../../services/FeatureService';
 import { MessageService } from '../../../services/MessageService';
-import { getAbsoluteMetaPath, getAbsoluteOutputsDir, getFeatureFolder, getProjectRoot, META_FILES } from '../../../utils/featureMetaPaths';
+import { getAbsoluteMetaPath, getAbsoluteOutputsDir, getFeatureFolder, META_FILES } from '../../../utils/featureMetaPaths';
 
 interface OpenFileMessage {
   command: 'openFile';

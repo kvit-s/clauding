@@ -1,7 +1,7 @@
 import * as vscode from 'vscode';
 import { ITerminalProvider } from './ITerminalProvider';
 import { VSCodeTerminalProvider } from './VSCodeTerminalProvider';
-import { TerminalConfig, TerminalProviderType } from '../config/TerminalConfig';
+import { TerminalConfig } from '../config/TerminalConfig';
 import { TmuxUtils } from './tmux/TmuxUtils';
 
 /**

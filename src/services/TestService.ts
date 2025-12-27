@@ -139,7 +139,7 @@ export class TestService {
       // Run command
       if (!this.terminalProvider) {
         // If using fallback, show terminal manually
-        (terminal as any).show(true);
+        terminal.show(true);
       }
       terminal.sendText(commandWithCapture, true);
     }

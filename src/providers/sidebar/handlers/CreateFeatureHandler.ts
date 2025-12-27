@@ -4,7 +4,7 @@ import { FeatureService } from '../../../services/FeatureService';
 import { WorktreeService } from '../../../services/WorktreeService';
 import { GitService } from '../../../services/GitService';
 import { MessageService } from '../../../services/MessageService';
-import { ITerminalProvider, TerminalType } from '../../../terminals/ITerminalProvider';
+import { ITerminalProvider } from '../../../terminals/ITerminalProvider';
 import { getAbsoluteMetaPath, META_FILES } from '../../../utils/featureMetaPaths';
 
 interface CreateFeatureMessage {

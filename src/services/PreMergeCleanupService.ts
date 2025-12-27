@@ -13,9 +13,8 @@ export class PreMergeCleanupService {
      * @param featureName The name of the feature being merged
      * @returns true if all metadata files are already in the features folder and .clauding is cleaned
      */
-    private isCleanupAlreadyDone(worktreePath: string, featureName: string): boolean {
+    private isCleanupAlreadyDone(worktreePath: string, _featureName: string): boolean {
         const claudingDir = path.join(worktreePath, '.clauding');
-        const projectRoot = getProjectRoot(worktreePath);
 
         // Check if .clauding directory exists - if not, cleanup is done
         if (!fs.existsSync(claudingDir)) {
