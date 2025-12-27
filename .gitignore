@@ -1,0 +1,16 @@
+# Runtime data
+.clauding
+
+# Dependencies
+node_modules/
+
+# Build outputs
+dist/
+out/
+webview/dist/
+
+# Test artifacts
+.vscode-test/
+
+# Packaged extension
+*.vsix

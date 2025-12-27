@@ -1,0 +1,76 @@
+{
+  "sampleTimelog": [
+    {
+      "timestamp": "2024-01-15T10:00:00Z",
+      "event": "feature-started",
+      "featureId": "feature-001",
+      "featureName": "user-authentication"
+    },
+    {
+      "timestamp": "2024-01-15T10:30:00Z",
+      "event": "file-modified",
+      "featureId": "feature-001",
+      "file": "src/auth/login.ts"
+    },
+    {
+      "timestamp": "2024-01-15T11:00:00Z",
+      "event": "test-run",
+      "featureId": "feature-001",
+      "result": "passed",
+      "duration": 2500
+    },
+    {
+      "timestamp": "2024-01-15T11:30:00Z",
+      "event": "commit",
+      "featureId": "feature-001",
+      "commitHash": "abc123def",
+      "message": "Add login form validation"
+    },
+    {
+      "timestamp": "2024-01-15T12:00:00Z",
+      "event": "feature-paused",
+      "featureId": "feature-001"
+    },
+    {
+      "timestamp": "2024-01-15T13:00:00Z",
+      "event": "feature-resumed",
+      "featureId": "feature-001"
+    },
+    {
+      "timestamp": "2024-01-15T15:00:00Z",
+      "event": "feature-completed",
+      "featureId": "feature-001",
+      "totalDuration": 14400000
+    }
+  ],
+  "emptyTimelog": [],
+  "singleEntryTimelog": [
+    {
+      "timestamp": "2024-01-15T10:00:00Z",
+      "event": "feature-started",
+      "featureId": "feature-001"
+    }
+  ],
+  "timelogWithMetrics": {
+    "entries": [
+      {
+        "timestamp": "2024-01-15T10:00:00Z",
+        "event": "feature-started",
+        "featureId": "feature-001"
+      },
+      {
+        "timestamp": "2024-01-15T15:00:00Z",
+        "event": "feature-completed",
+        "featureId": "feature-001"
+      }
+    ],
+    "metrics": {
+      "totalTime": 18000000,
+      "activeTime": 14400000,
+      "pausedTime": 3600000,
+      "filesModified": 15,
+      "commits": 8,
+      "testsRun": 42
+    }
+  }
+}

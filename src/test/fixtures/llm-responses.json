@@ -1,0 +1,163 @@
+{
+  "successfulChatCompletion": {
+    "id": "chatcmpl-123456",
+    "object": "chat.completion",
+    "created": 1677652288,
+    "model": "gpt-4",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "This is a bug fix. The changes modify the login authentication logic to handle edge cases where users have special characters in their passwords."
+        },
+        "finish_reason": "stop"
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 150,
+      "completion_tokens": 35,
+      "total_tokens": 185
+    }
+  },
+  "featureClassification": {
+    "id": "chatcmpl-789012",
+    "object": "chat.completion",
+    "created": 1677652300,
+    "model": "gpt-4",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"type\": \"feature\",\n  \"confidence\": 0.95,\n  \"description\": \"New user authentication system\",\n  \"category\": \"authentication\",\n  \"scope\": \"medium\",\n  \"estimatedComplexity\": \"high\"\n}"
+        },
+        "finish_reason": "stop"
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 200,
+      "completion_tokens": 50,
+      "total_tokens": 250
+    }
+  },
+  "bugFixClassification": {
+    "id": "chatcmpl-345678",
+    "object": "chat.completion",
+    "created": 1677652310,
+    "model": "gpt-4",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"type\": \"bug-fix\",\n  \"confidence\": 0.88,\n  \"description\": \"Fix login redirect issue\",\n  \"severity\": \"medium\",\n  \"affectedArea\": \"authentication\"\n}"
+        },
+        "finish_reason": "stop"
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 180,
+      "completion_tokens": 45,
+      "total_tokens": 225
+    }
+  },
+  "refactoringClassification": {
+    "id": "chatcmpl-901234",
+    "object": "chat.completion",
+    "created": 1677652320,
+    "model": "gpt-4",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"type\": \"refactoring\",\n  \"confidence\": 0.92,\n  \"description\": \"Restructure authentication service for better testability\",\n  \"scope\": \"large\",\n  \"impact\": \"low-risk\"\n}"
+        },
+        "finish_reason": "stop"
+      }
+    ]
+  },
+  "documentationClassification": {
+    "id": "chatcmpl-567890",
+    "object": "chat.completion",
+    "created": 1677652330,
+    "model": "gpt-4",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"type\": \"documentation\",\n  \"confidence\": 0.98,\n  \"description\": \"Add API documentation for authentication endpoints\",\n  \"scope\": \"small\"\n}"
+        },
+        "finish_reason": "stop"
+      }
+    ]
+  },
+  "lowConfidenceClassification": {
+    "id": "chatcmpl-111222",
+    "object": "chat.completion",
+    "created": 1677652340,
+    "model": "gpt-4",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"type\": \"unknown\",\n  \"confidence\": 0.45,\n  \"description\": \"Mixed changes with unclear purpose\",\n  \"notes\": \"Requires manual review\"\n}"
+        },
+        "finish_reason": "stop"
+      }
+    ]
+  },
+  "apiError": {
+    "error": {
+      "message": "Invalid API key provided",
+      "type": "invalid_request_error",
+      "param": null,
+      "code": "invalid_api_key"
+    }
+  },
+  "rateLimitError": {
+    "error": {
+      "message": "Rate limit exceeded. Please retry after 60 seconds.",
+      "type": "rate_limit_error",
+      "param": null,
+      "code": "rate_limit_exceeded"
+    }
+  },
+  "networkTimeoutError": {
+    "error": {
+      "message": "Request timed out",
+      "type": "timeout_error",
+      "param": null,
+      "code": "timeout"
+    }
+  },
+  "invalidResponseFormat": {
+    "id": "chatcmpl-999888",
+    "object": "chat.completion",
+    "created": 1677652350,
+    "model": "gpt-4",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "This is not valid JSON { type: feature, missing quotes }"
+        },
+        "finish_reason": "stop"
+      }
+    ]
+  },
+  "streamingResponse": {
+    "chunks": [
+      "data: {\"id\":\"chatcmpl-123\",\"object\":\"chat.completion.chunk\",\"created\":1677652288,\"model\":\"gpt-4\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\"This\"},\"finish_reason\":null}]}\n\n",
+      "data: {\"id\":\"chatcmpl-123\",\"object\":\"chat.completion.chunk\",\"created\":1677652288,\"model\":\"gpt-4\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\" is\"},\"finish_reason\":null}]}\n\n",
+      "data: {\"id\":\"chatcmpl-123\",\"object\":\"chat.completion.chunk\",\"created\":1677652288,\"model\":\"gpt-4\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\" a\"},\"finish_reason\":null}]}\n\n",
+      "data: {\"id\":\"chatcmpl-123\",\"object\":\"chat.completion.chunk\",\"created\":1677652288,\"model\":\"gpt-4\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\" test\"},\"finish_reason\":null}]}\n\n",
+      "data: {\"id\":\"chatcmpl-123\",\"object\":\"chat.completion.chunk\",\"created\":1677652288,\"model\":\"gpt-4\",\"choices\":[{\"index\":0,\"delta\":{},\"finish_reason\":\"stop\"}]}\n\n",
+      "data: [DONE]\n\n"
+    ]
+  }
+}

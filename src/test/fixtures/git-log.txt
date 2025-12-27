@@ -1,0 +1,116 @@
+# Git Log Output
+commit abc123def456789012345678901234567890abcd
+Author: John Doe <john.doe@example.com>
+Date:   Mon Jan 15 14:30:22 2024 -0500
+
+    feat: Add user authentication system
+
+    - Implement login/logout functionality
+    - Add password hashing with bcrypt
+    - Create user session management
+    - Add JWT token generation
+
+    Closes #42
+
+commit bcd234efa567890123456789012345678901bcde
+Author: Jane Smith <jane.smith@example.com>
+Date:   Mon Jan 15 10:15:18 2024 -0500
+
+    fix: Resolve login redirect issue
+
+    Fixed bug where users were redirected to incorrect page
+    after successful login. Updated redirect logic to check
+    user permissions before navigation.
+
+    Fixes #38
+
+commit cde345efb678901234567890123456789012cdef
+Author: John Doe <john.doe@example.com>
+Date:   Fri Jan 12 16:45:30 2024 -0500
+
+    refactor: Restructure authentication service
+
+    - Split AuthService into smaller modules
+    - Improve testability with dependency injection
+    - Add comprehensive error handling
+    - Update documentation
+
+commit def456efc789012345678901234567890123defa
+Author: Alice Johnson <alice@example.com>
+Date:   Fri Jan 12 09:20:15 2024 -0500
+
+    test: Add tests for payment service
+
+    - Add unit tests for payment processing
+    - Add integration tests for payment gateway
+    - Mock external payment API calls
+    - Achieve 95% test coverage
+
+commit efa567efd890123456789012345678901234efab
+Author: Bob Williams <bob@example.com>
+Date:   Thu Jan 11 14:10:42 2024 -0500
+
+    docs: Update API documentation
+
+    - Add authentication endpoint documentation
+    - Include request/response examples
+    - Document error codes and responses
+    - Add authentication flow diagram
+
+commit fab678efe901234567890123456789012345fabc
+Author: Jane Smith <jane.smith@example.com>
+Date:   Wed Jan 10 11:30:55 2024 -0500
+
+    chore: Update dependencies
+
+    - Bump express to 4.18.2
+    - Update jest to 29.5.0
+    - Fix security vulnerabilities
+    - Update lockfile
+
+commit abc789eff012345678901234567890123456abcd
+Author: John Doe <john.doe@example.com>
+Date:   Tue Jan 9 15:45:20 2024 -0500
+
+    feat: Add password reset functionality
+
+    - Implement forgot password flow
+    - Add email verification
+    - Create password reset tokens
+    - Add rate limiting for reset requests
+
+commit bcd890efa123456789012345678901234567bcde
+Author: Alice Johnson <alice@example.com>
+Date:   Mon Jan 8 13:25:10 2024 -0500
+
+    Initial commit
+
+    Project structure and basic configuration
+
+---
+
+# Git Log --oneline
+abc123d feat: Add user authentication system
+bcd234e fix: Resolve login redirect issue
+cde345e refactor: Restructure authentication service
+def456e test: Add tests for payment service
+efa567e docs: Update API documentation
+fab678e chore: Update dependencies
+abc789e feat: Add password reset functionality
+bcd890e Initial commit
+
+---
+
+# Git Log --stat
+commit abc123def456789012345678901234567890abcd
+Author: John Doe <john.doe@example.com>
+Date:   Mon Jan 15 14:30:22 2024 -0500
+
+    feat: Add user authentication system
+
+ src/auth/AuthService.ts       | 145 ++++++++++++++++++++++++++++++++
+ src/auth/PasswordHasher.ts    |  42 ++++++++++
+ src/auth/SessionManager.ts    |  78 +++++++++++++++++
+ src/auth/TokenGenerator.ts    |  56 +++++++++++++
+ tests/auth/AuthService.test.ts|  92 +++++++++++++++++++++
+ 5 files changed, 413 insertions(+)

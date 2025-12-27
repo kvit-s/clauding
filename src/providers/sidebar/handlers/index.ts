@@ -1,0 +1,24 @@
+// Export all handlers for easy importing
+export { CreateFeatureHandler } from './CreateFeatureHandler';
+export { SelectFeatureHandler } from './SelectFeatureHandler';
+export { OpenFileHandler } from './OpenFileHandler';
+export { OpenFileAtCommitHandler } from './OpenFileAtCommitHandler';
+export { OpenCommitDiffHandler } from './OpenCommitDiffHandler';
+export { DeleteFeatureHandler } from './DeleteFeatureHandler';
+export { RenameFeatureHandler } from './RenameFeatureHandler';
+export { CommitHandler } from './CommitHandler';
+export { RunTestsHandler } from './RunTestsHandler';
+export { OpenConsoleHandler } from './OpenConsoleHandler';
+export { OpenFolderHandler } from './OpenFolderHandler';
+export { DismissMessageHandler } from './DismissMessageHandler';
+export { ActivateTerminalHandler } from './ActivateTerminalHandler';
+export { CloseTerminalHandler } from './CloseTerminalHandler';
+export { GetFileTreeHandler } from './GetFileTreeHandler';
+export { RunHandler } from './RunHandler';
+export { MergeHandler } from './MergeHandler';
+export { UpdateFromMainHandler } from './UpdateFromMainHandler';
+export { ExecuteAgentCommandHandler } from './ExecuteAgentCommandHandler';
+export { ApplyPendingCommandHandler } from './ApplyPendingCommandHandler';
+export { MessageActionHandler } from './MessageActionHandler';
+export { ToggleArchiveViewHandler } from './ToggleArchiveViewHandler';
+export { ReactivateFeatureHandler } from './ReactivateFeatureHandler';

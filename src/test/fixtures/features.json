@@ -1,0 +1,46 @@
+{
+  "mockFeature1": {
+    "id": "feature-001",
+    "name": "user-authentication",
+    "description": "Implement user authentication system",
+    "status": "active",
+    "createdAt": "2024-01-15T10:30:00Z",
+    "branch": "feature/user-authentication",
+    "worktreePath": "/path/to/worktree/user-authentication"
+  },
+  "mockFeature2": {
+    "id": "feature-002",
+    "name": "payment-integration",
+    "description": "Add payment gateway integration",
+    "status": "in-progress",
+    "createdAt": "2024-01-16T14:45:00Z",
+    "branch": "feature/payment-integration",
+    "worktreePath": "/path/to/worktree/payment-integration"
+  },
+  "mockFeature3": {
+    "id": "feature-003",
+    "name": "bug-fix-login",
+    "description": "Fix login redirect issue",
+    "status": "completed",
+    "createdAt": "2024-01-14T09:15:00Z",
+    "branch": "bugfix/login-redirect",
+    "worktreePath": "/path/to/worktree/bug-fix-login"
+  },
+  "mockFeatureList": [
+    {
+      "id": "feature-001",
+      "name": "user-authentication",
+      "status": "active"
+    },
+    {
+      "id": "feature-002",
+      "name": "payment-integration",
+      "status": "in-progress"
+    },
+    {
+      "id": "feature-003",
+      "name": "bug-fix-login",
+      "status": "completed"
+    }
+  ]
+}

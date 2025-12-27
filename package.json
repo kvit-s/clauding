@@ -1,0 +1,501 @@
+{
+  "name": "clauding",
+  "displayName": "Clauding",
+  "description": "Plan-first development workflow with git worktree isolation",
+  "version": "0.1.0",
+  "publisher": "clauding",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kvit-s/clauding"
+  },
+  "engines": {
+    "vscode": "^1.105.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "clauding",
+          "title": "Clauding",
+          "icon": "resources/icon.svg"
+        }
+      ]
+    },
+    "views": {
+      "clauding": [
+        {
+          "type": "webview",
+          "id": "clauding-sidebar",
+          "name": ""
+        }
+      ]
+    },
+    "menus": {
+      "view/title": [
+        {
+          "command": "clauding.newFeature",
+          "when": "view == clauding-sidebar",
+          "group": "navigation"
+        },
+        {
+          "command": "clauding.sortFeatures",
+          "when": "view == clauding-sidebar",
+          "group": "navigation"
+        },
+        {
+          "command": "clauding.searchFeatures",
+          "when": "view == clauding-sidebar",
+          "group": "navigation"
+        },
+        {
+          "command": "clauding.toggleArchiveView",
+          "when": "view == clauding-sidebar",
+          "group": "navigation"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "clauding.newFeature",
+        "title": "Clauding: New Feature",
+        "icon": "$(add)"
+      },
+      {
+        "command": "clauding.sortFeatures",
+        "title": "Clauding: Sort Features",
+        "icon": "$(sort-precedence)"
+      },
+      {
+        "command": "clauding.searchFeatures",
+        "title": "Clauding: Search Features",
+        "icon": "$(search)"
+      },
+      {
+        "command": "clauding.toggleArchiveView",
+        "title": "Clauding: Toggle Archive View",
+        "icon": "$(archive)"
+      },
+      {
+        "command": "clauding.refinePlan",
+        "title": "Clauding: Refine Plan"
+      },
+      {
+        "command": "clauding.configureTests",
+        "title": "Clauding: Configure Tests"
+      },
+      {
+        "command": "clauding.runTests",
+        "title": "Clauding: Run Tests"
+      },
+      {
+        "command": "clauding.mergeFeature",
+        "title": "Clauding: Merge Feature"
+      },
+      {
+        "command": "clauding.viewMergeConflicts",
+        "title": "Clauding: View Merge Conflicts"
+      },
+      {
+        "command": "clauding.resolveAllWithFeature",
+        "title": "Clauding: Resolve All Conflicts (Use Feature Branch)"
+      },
+      {
+        "command": "clauding.resolveAllWithMain",
+        "title": "Clauding: Resolve All Conflicts (Use Main Branch)"
+      },
+      {
+        "command": "clauding.finalizeMerge",
+        "title": "Clauding: Finalize Merge"
+      },
+      {
+        "command": "clauding.abortMerge",
+        "title": "Clauding: Abort Merge"
+      },
+      {
+        "command": "clauding.changeAgent",
+        "title": "Clauding: Change Agent"
+      },
+      {
+        "command": "clauding.testOpenSidebar",
+        "title": "Clauding: TEST - Open Active Features Panel"
+      },
+      {
+        "command": "clauding.viewPlanReport",
+        "title": "Clauding: View Plan Report"
+      },
+      {
+        "command": "clauding.openSettings",
+        "title": "Clauding: Open Settings",
+        "category": "Clauding"
+      },
+      {
+        "command": "clauding.configureAgentHooks",
+        "title": "Clauding: Configure Agent Status Hooks",
+        "category": "Clauding"
+      },
+      {
+        "command": "clauding.migrateFeatures",
+        "title": "Clauding: Migrate Features to New Structure",
+        "category": "Clauding"
+      },
+      {
+        "command": "clauding.repairMigratedFeatures",
+        "title": "Clauding: Repair Migrated Features Commit Hashes",
+        "category": "Clauding"
+      },
+      {
+        "command": "clauding.cleanupBranches",
+        "title": "Clauding: Cleanup Merged Branches",
+        "category": "Clauding"
+      },
+      {
+        "command": "clauding.showClaudeUsage",
+        "title": "Clauding: Show Claude Usage",
+        "category": "Clauding"
+      }
+    ],
+    "configuration": {
+      "title": "Clauding",
+      "properties": {
+        "clauding.agent.command": {
+          "type": "string",
+          "default": "claude",
+          "scope": "window",
+          "description": "Command to launch the coding agent"
+        },
+        "clauding.llm.enabled": {
+          "type": "boolean",
+          "default": false,
+          "scope": "window",
+          "description": "[Experimental] Enable LLM-based feature classification"
+        },
+        "clauding.llm.apiKey": {
+          "type": "string",
+          "default": "",
+          "scope": "machine",
+          "description": "API key for LLM service (e.g., OpenRouter API key). Used for feature classification."
+        },
+        "clauding.llm.baseURL": {
+          "type": "string",
+          "default": "https://openrouter.ai/api/v1",
+          "scope": "window",
+          "description": "Base URL for LLM API endpoint (OpenAI-compatible)"
+        },
+        "clauding.llm.model": {
+          "type": "string",
+          "default": "openai/gpt-4o-mini:free",
+          "scope": "window",
+          "description": "Model to use for feature classification"
+        },
+        "clauding.llm.temperature": {
+          "type": "number",
+          "default": 0.7,
+          "minimum": 0,
+          "maximum": 2,
+          "scope": "window",
+          "description": "Temperature for LLM responses (0.0 - 2.0)"
+        },
+        "clauding.llm.maxTokens": {
+          "type": "number",
+          "default": 4000,
+          "minimum": 256,
+          "maximum": 128000,
+          "scope": "window",
+          "description": "Maximum tokens for LLM responses"
+        },
+        "clauding.test.command": {
+          "type": "string",
+          "default": "",
+          "scope": "resource",
+          "description": "Default test command for all features (e.g., npm test, pytest, cargo test). Can be overridden per feature."
+        },
+        "clauding.agentStatus.notifications": {
+          "type": "object",
+          "default": {
+            "notifyOnIdle": false,
+            "notifyOnError": true,
+            "notifyOnInput": true
+          },
+          "scope": "window",
+          "description": "Configure when to show notifications for agent status changes"
+        },
+        "clauding.agentStatus.maxHistoryEvents": {
+          "type": "number",
+          "default": 100,
+          "scope": "window",
+          "description": "Maximum number of events to keep in history per session"
+        },
+        "clauding.agentStatus.sessionTimeout": {
+          "type": "number",
+          "default": 3600,
+          "scope": "window",
+          "description": "Seconds before inactive sessions are pruned (default: 1 hour)"
+        },
+        "clauding.preRunCommands": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": [],
+          "scope": "window",
+          "description": "Commands to run before ALL feature [Run] actions (e.g., ['npm install', 'npm run build']). These commands execute in the feature's worktree directory and apply to all features."
+        },
+        "clauding.autoCloseRunTerminal": {
+          "type": "boolean",
+          "default": true,
+          "scope": "window",
+          "description": "Automatically close pre-run command terminals when the debug session terminates"
+        },
+        "clauding.terminal.provider": {
+          "type": "string",
+          "enum": [
+            "vscode",
+            "tmux",
+            "auto"
+          ],
+          "default": "auto",
+          "scope": "window",
+          "enumDescriptions": [
+            "Use VS Code's built-in terminals",
+            "Use tmux for enhanced terminal management (requires tmux installation)",
+            "Automatically detect tmux availability and use it if available"
+          ],
+          "description": "Terminal provider to use for feature terminals"
+        },
+        "clauding.terminal.tmux.sessionName": {
+          "type": "string",
+          "default": "clauding",
+          "scope": "window",
+          "description": "Name for the tmux session used by Clauding. Will be prefixed with workspace name."
+        },
+        "clauding.terminal.tmux.activityTimeout": {
+          "type": "number",
+          "default": 5,
+          "minimum": 1,
+          "maximum": 300,
+          "scope": "window",
+          "description": "Seconds of silence before a terminal is considered idle"
+        },
+        "clauding.terminal.tmux.monitoringInterval": {
+          "type": "number",
+          "default": 1000,
+          "minimum": 100,
+          "maximum": 10000,
+          "scope": "window",
+          "description": "Polling interval in milliseconds for activity monitoring"
+        },
+        "clauding.terminal.tmux.useControlMode": {
+          "type": "boolean",
+          "default": false,
+          "scope": "window",
+          "description": "Use tmux control mode for real-time events instead of polling (experimental)"
+        },
+        "clauding.terminal.tmux.mouseMode": {
+          "type": "boolean",
+          "default": true,
+          "scope": "window",
+          "description": "Enable tmux mouse mode. When enabled (default), tmux handles mouse events allowing proper scrolling behavior. When disabled, mouse events are passed to the terminal application which causes incorrect scrolling behavior."
+        },
+        "clauding.agents": {
+          "type": "array",
+          "default": [
+            {
+              "id": "claude",
+              "executable": "claude",
+              "flags": "--dangerously-skip-permissions"
+            }
+          ],
+          "scope": "window",
+          "description": "List of agent executables available for running commands",
+          "items": {
+            "type": "object",
+            "required": ["id", "executable"],
+            "properties": {
+              "id": {
+                "type": "string",
+                "description": "Unique identifier for this agent (also used as display name)"
+              },
+              "executable": {
+                "type": "string",
+                "description": "Command to execute (e.g., 'claude')"
+              },
+              "flags": {
+                "type": "string",
+                "description": "Command-line flags to pass to the agent",
+                "default": ""
+              }
+            }
+          }
+        },
+        "clauding.defaultAgentId": {
+          "type": "string",
+          "default": "claude",
+          "scope": "window",
+          "description": "ID of the default agent to use for commands"
+        },
+        "clauding.agentExecutable": {
+          "type": "string",
+          "default": "claude",
+          "scope": "window",
+          "deprecationMessage": "Use 'clauding.agents' instead",
+          "description": "[DEPRECATED] Use clauding.agents instead"
+        },
+        "clauding.agentFlags": {
+          "type": "string",
+          "default": "--dangerously-skip-permissions",
+          "scope": "window",
+          "deprecationMessage": "Use 'clauding.agents' instead",
+          "description": "[DEPRECATED] Use clauding.agents instead"
+        },
+        "clauding.usage.checkDelay": {
+          "type": "number",
+          "default": 2000,
+          "minimum": 500,
+          "maximum": 10000,
+          "scope": "window",
+          "description": "Delay in milliseconds to wait for Claude CLI to initialize when checking usage"
+        },
+        "clauding.usage.parseDelay": {
+          "type": "number",
+          "default": 1000,
+          "minimum": 200,
+          "maximum": 5000,
+          "scope": "window",
+          "description": "Delay in milliseconds to wait after sending /usage command before parsing output"
+        },
+        "clauding.usage.timeout": {
+          "type": "number",
+          "default": 30000,
+          "minimum": 5000,
+          "maximum": 60000,
+          "scope": "window",
+          "description": "Maximum time in milliseconds to wait for usage check to complete"
+        },
+        "clauding.agentCommands": {
+          "type": "array",
+          "default": [],
+          "scope": "window",
+          "markdownDescription": "Custom agent commands. User-defined commands will override default commands with the same name.\n\n**Note:** This setting cannot be edited in the Settings UI due to its complexity. Please edit your `settings.json` file directly:\n\n1. Open Command Palette (`Ctrl+Shift+P` or `Cmd+Shift+P`)\n2. Run: `Preferences: Open User Settings (JSON)`\n3. Add your custom commands to the `clauding.agentCommands` array\n\n[View Documentation](https://github.com/kvit-s/clauding#custom-agent-commands) for examples and configuration details.",
+          "items": {
+            "type": "object",
+            "required": ["name", "path", "prompt", "outputFilePrefix"],
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "Unique identifier and default display label"
+              },
+              "label": {
+                "type": "string",
+                "description": "Optional display label (defaults to name)"
+              },
+              "path": {
+                "type": "string",
+                "enum": [".", "{worktree}"],
+                "description": "Working directory: '.' for root or '{worktree}' for feature worktree"
+              },
+              "prompt": {
+                "type": "string",
+                "description": "Template string with variable placeholders ({feature-name}, {working-directory}, {worktree}, {root}, {file:path})"
+              },
+              "requiredFiles": {
+                "type": "array",
+                "description": "File specifications that must exist before command execution",
+                "items": {
+                  "type": "object",
+                  "required": ["path", "type"],
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "File path or pattern (e.g., 'prompt.md' or 'test-run-*.txt')"
+                    },
+                    "type": {
+                      "type": "string",
+                      "enum": ["exact", "pattern"],
+                      "description": "File type: 'exact' (created if missing) or 'pattern' (error if not found)"
+                    },
+                    "template": {
+                      "type": "string",
+                      "description": "Template content for exact files (used when creating missing files)"
+                    },
+                    "errorMessage": {
+                      "type": "string",
+                      "description": "Custom error message for pattern files when not found"
+                    }
+                  }
+                }
+              },
+              "outputFilePrefix": {
+                "type": "string",
+                "description": "Prefix for output file names"
+              },
+              "defaultPrompt": {
+                "type": "string",
+                "description": "Base system prompt applied when no agent-specific override is provided"
+              },
+              "prompts": {
+                "type": "object",
+                "description": "Optional map from agentId to prompt text, allowing different system prompts for each agent executable",
+                "additionalProperties": {
+                  "type": "string"
+                }
+              },
+              "preferredAgentId": {
+                "type": "string",
+                "description": "Optional agent ID to use for this command (overrides defaultAgentId)"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "scripts": {
+    "postinstall": "cd webview && npm install",
+    "vscode:prepublish": "npm run build",
+    "compile": "tsc -p ./",
+    "compile-tests": "tsc -p ./",
+    "package-extension": "node esbuild.js --production",
+    "build": "npm run package-extension && cd webview && npm run build",
+    "build:webview": "cd webview && npm run build",
+    "watch": "node esbuild.js --watch",
+    "pretest": "npm run compile-tests && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "npm run test:all",
+    "test:all": "node ./out/test/runTest.js",
+    "test:unit": "node ./out/test/runTest.js --grep 'Test Suite'",
+    "test:integration": "node ./out/test/runTest.js --grep 'Integration'",
+    "test:watch": "npm run test:unit",
+    "test:fast": "npm run test:unit",
+    "package": "NODE_NO_WARNINGS=1 npx vsce package",
+    "install-local": "code --install-extension $(ls -t *.vsix | head -1)",
+    "release": "npm run package && npm run install-local"
+  },
+  "dependencies": {
+    "@vscode/codicons": "^0.0.36"
+  },
+  "devDependencies": {
+    "@types/glob": "^8.1.0",
+    "@types/mocha": "^10.0.10",
+    "@types/node": "^18.19.130",
+    "@types/sinon": "^17.0.4",
+    "@types/vscode": "^1.105.0",
+    "@typescript-eslint/eslint-plugin": "^8.18.2",
+    "@typescript-eslint/parser": "^8.18.2",
+    "@vscode/test-electron": "^2.3.8",
+    "esbuild": "^0.25.11",
+    "eslint": "^8.56.0",
+    "glob": "^11.0.3",
+    "mocha": "^11.7.4",
+    "prettier": "^3.1.1",
+    "sinon": "^21.0.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.3"
+  }
+}
