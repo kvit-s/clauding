@@ -1,6 +1,6 @@
 # Clauding - Parallel Feature Development with AI Agents
 
-> Originally built for coding with Claude ("clauding")—now extended to other agents.
+> Once there was *coding* and now it is *clauding*
 
 Clauding is a VS Code extension for managing parallel development work using AI coding agents. It provides the infrastructure to work on multiple features simultaneously, each isolated in its own git worktree, while capturing complete agent interaction logs for review, prompt optimization, and fine-tuning.
 
